@@ -48,4 +48,58 @@ describe('AppController (e2e)', () => {
   it('/ (GET)', () => {
     return request(app.getHttpServer()).get('/').expect(200).expect(/Hello/);
   });
+
+
+
+
+  it('/apikey (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/apikey')
+      .expect(200)
+      .expect((res) => {
+        expect(res.text).toBeDefined();
+      });
+  });
+
+  it('/validate-rut (GET) rut válido', () => {
+    return request(app.getHttpServer())
+      .get('/validate-rut')
+      .query({ rut: '11111111-1' })
+      .expect(200)
+      .expect((res) => {
+        expect(res.body).toEqual({ mensaje: 'rut valido' });
+      });
+  });
+
+  it('/validate-rut (GET) rut válido k minuscula', () => {
+    return request(app.getHttpServer())
+      .get('/validate-rut')
+      .query({ rut: '10316639-k' })
+      .expect(200)
+      .expect((res) => {
+        expect(res.body).toEqual({ mensaje: 'rut valido' });
+      });
+  });
+
+  it('/validate-rut (GET) rut válido k mayuscula', () => {
+    return request(app.getHttpServer())
+      .get('/validate-rut')
+      .query({ rut: '10316639-K' })
+      .expect(200)
+      .expect((res) => {
+        expect(res.body).toEqual({ mensaje: 'rut valido' });
+      });
+  });
+
+  it('/validate-rut (GET) rut inválido', () => {
+    return request(app.getHttpServer())
+      .get('/validate-rut')
+      .query({ rut: '123' })
+      .expect(400)
+      .expect((res) => {
+        expect(res.body).toEqual({ mensaje: 'rut invalido' });
+      });
+  });
+
+
 });
