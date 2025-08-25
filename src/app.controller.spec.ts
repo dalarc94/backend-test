@@ -28,10 +28,71 @@ describe('AppController', () => {
 
   describe('Probar el modulo raiz del proyecto', () => {
     test('Esto deberia retornar hola mundo en ingles"', () => {
+      //expect(appController.getHello()).toBe('Hello Usuario!!');
       expect(appController.getHello()).toBe('Hello !!');
     });
   });
+  /* describe('Probar el modulo raiz del proyecto', () => {
+    test('Esto debería retornar "Hello <USERNAME>!!"', () => {
+      // Obtiene el valor de la variable de entorno, si no existe usa "Usuario"
+      const expectedUsername = process.env.USERNAME ?? 'Usuario';
+
+      // Compara con el resultado real del appController
+      expect(appController.getHello()).toBe(`Hello ${expectedUsername}!!`);
+    });
+  }); */
 });
+
+
+  /* describe('AppController (Unit)', () => {
+    let appController: AppController;
+    let appService: AppService;
+
+    // Mock para AppService, para aislar el controlador en las pruebas unitarias
+    const mockAppService = {
+      getHello: jest.fn(),
+      getApikey: jest.fn(),
+      validateRut: jest.fn(),
+    };
+
+    // Mock para el objeto Response de Express
+    const mockResponse = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+
+    beforeEach(async () => {
+      const module: TestingModule = await Test.createTestingModule({
+        controllers: [AppController],
+        providers: [
+          {
+            provide: AppService,
+            useValue: mockAppService,
+          },
+        ],
+      }).compile();
+
+      appController = module.get<AppController>(AppController);
+      appService = module.get<AppService>(AppService);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('debería estar definido', () => {
+      expect(appController).toBeDefined();
+    });
+
+    describe('getHello', () => {
+      it('debería retornar el saludo provisto por AppService', () => {
+        const result = 'Hello World Test!';
+        mockAppService.getHello.mockReturnValue(result);
+        expect(appController.getHello()).toBe(result);
+        expect(mockAppService.getHello).toHaveBeenCalledTimes(1);
+      });
+    });
+  }); */
 
 describe('AppController (e2e)', () => {
   let app: INestApplication<App>;
@@ -51,7 +112,7 @@ describe('AppController (e2e)', () => {
 
 
 
-
+  /* Validar mas endpoints */
   it('/apikey (GET)', () => {
     return request(app.getHttpServer())
       .get('/apikey')
@@ -100,6 +161,4 @@ describe('AppController (e2e)', () => {
         expect(res.body).toEqual({ mensaje: 'rut invalido' });
       });
   });
-
-
 });
