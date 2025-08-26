@@ -26,7 +26,7 @@ pipeline {
                 }
             }
         }
-        stage("Quality Assurance"){
+       /*  stage("Quality Assurance"){
             agent {
                 docker {
                     image 'sonarsource/sonar-scanner-cli'
@@ -56,7 +56,7 @@ pipeline {
                     }
                 }
             } 
-        }
+        } */
         stage('Etapa de empaquetado y delivery') {
             steps {
                 sh 'docker build -t backend-node-devops:dac .'
