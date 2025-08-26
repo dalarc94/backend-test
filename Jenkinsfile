@@ -59,7 +59,7 @@ pipeline {
         }
         stage('Etapa de empaquetado y delivery') {
             steps {
-                sh 'docker build -t backend-node-devops:latest .'
+                sh 'docker build -t backend-node-devops .'
                 sh "docker tag backend-node-devops:latest dalarc94/backend-node-devops:${BUILD_NUMBER}"
                 sh "docker tag backend-node-devops:latest localhost:8082/backend-node-devops:${BUILD_NUMBER}"
                 script {
