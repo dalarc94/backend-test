@@ -72,7 +72,7 @@ pipeline {
                 }
             }
         }
-        stage('Despliegue continuo') {
+        /* stage('Despliegue continuo') {
             when {
                 branch 'main'
             }
@@ -87,6 +87,6 @@ pipeline {
                      sh "kubectl -n devops set image deployments backend-node-devops backend-node-devops=localhost:8082/backend-node-devops:${BUILD_NUMBER}"
                 }
             }
-        }
+        } */
     }
 }
