@@ -21,43 +21,43 @@ spec:
         app: backend-node-devops
     spec:
       containers:
-      - name: backend-node-devops
-        image: localhost:8082/backend-node-devops:latest
-        imagePullPolicy: Always
-        env:
-        - name: NODE_ENV_SECUNDARIA
-          value: development
-        - name: PORT_SECUNDARIO
-          value: "3000"
-        - name: PORT
-          valueFrom:
-            configMapKeyRef:
-              name: cm-backend
-              key: PORT
-        - name: NODE_ENV
-          valueFrom:
-            configMapKeyRef:
-              name: cm-backend
-              key: NODE_ENV
-        - name: BBDD_URL
-          valueFrom:
-            configMapKeyRef:
-              name: cm-backend
-              key: BBDD_URL
-        - name: PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: sc-backend
-              key: PASSWORD
+        - name: backend-node-devops
+          image: localhost:8082/backend-node-devops:latest
+          imagePullPolicy: Always
+          env:
+          - name: NODE_ENV_SECUNDARIA
+            value: development
+          - name: PORT_SECUNDARIO
+            value: "3000"
+          - name: PORT
+            valueFrom:
+              configMapKeyRef:
+                name: cm-backend
+                key: PORT
+          - name: NODE_ENV
+            valueFrom:
+              configMapKeyRef:
+                name: cm-backend
+                key: NODE_ENV
+          - name: BBDD_URL
+            valueFrom:
+              configMapKeyRef:
+                name: cm-backend
+                key: BBDD_URL
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: sc-backend
+                key: BBDD_URL
       imagePullSecrets:
-      - name: docker-registry-secret
+        - name: docker-registry-secret
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: backend-node-devops
   namespace: devops
-  labels:
+  labels: 
     app: backend-node-devops
 spec:
   selector:
@@ -88,7 +88,9 @@ spec:
             name: backend-node-devops
             port:
               number: 80
-  tls:
-  - hosts:
-    - backend.devops.cl
-    secretName: backend-tls
+#    tls:
+#    - host: 
+#      - backend.devops.cl
+#      secretName: backend-tls
+      
+    
