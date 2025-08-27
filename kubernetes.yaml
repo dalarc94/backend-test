@@ -32,23 +32,18 @@ spec:
           - name: PORT
             valueFrom:
               configMapKeyRef:
-                name: cm-backend
+                name: cm-backend2
                 key: PORT
-          - name: NODE_ENV
+          - name: USERNAME
             valueFrom:
               configMapKeyRef:
-                name: cm-backend
-                key: NODE_ENV
-          - name: BBDD_URL
-            valueFrom:
-              configMapKeyRef:
-                name: cm-backend
-                key: BBDD_URL
-          - name: PASSWORD
+                name: cm-backend2
+                key: USERNAME
+          - name: API_KEY
             valueFrom:
               secretKeyRef:
-                name: sc-backend
-                key: BBDD_URL
+                name: sc-backend2
+                key: API_KEY
       imagePullSecrets:
         - name: docker-registry-secret
 ---
